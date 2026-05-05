@@ -51,6 +51,7 @@ include Glimmer
         button('Delete') {
           stretchy false
           on_clicked do
+            self.eliminar(@id.text, @password.text)
           @user.text = "";
         end
         }
@@ -71,14 +72,31 @@ include Glimmer
   end
 
   def insertar(id, user, password, tipoUsuario)
+    db = Implementacion.new
+    if db.insert(id, user, password, tipoUsuario)
       puts("Entra")
-      db = Implementacion.new
-      if db.insert(id, user, password, tipoUsuario)
-        puts("Entra")
-      else
-        msg_box('Error', "Error")
-      end
+    else
+      msg_box('Error', "Error")
     end
+  end
+
+  def eliminar(id, password)
+    db = Implementacion.new
+    if db.Delete(id, password)
+      puts("Entra")
+    else
+      msg_box('Error', "Error")
+    end
+  end
+
+  def actualizar(id, user, password, tipoUsuario)
+    db = Implementacion.new
+    if db.Update(id, user, password, tipoUsuario)
+      puts("Entra")
+    else
+      msg_box('Error', "Error")
+    end
+  end
 end
 
 Formulario.new.ventana
