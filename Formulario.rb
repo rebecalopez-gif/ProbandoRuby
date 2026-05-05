@@ -51,8 +51,15 @@ include Glimmer
         button('Delete') {
           stretchy false
           on_clicked do
+           if @id.text != ""  && @password.text != "" 
+            msg_box('Info', "El usuario #{@user.text} con id #{@id.text} y contraseña #{@password.text} ha sido eliminado")
             self.eliminar(@id.text, @password.text)
-          @user.text = "";
+            @id.text = "";
+            @user.text = "";
+            @password.text = "";
+          else
+            msg_box('Error', "No puede haber campos vacios")
+          end
         end
         }
 
@@ -82,7 +89,7 @@ include Glimmer
 
   def eliminar(id, password)
     db = Implementacion.new
-    if db.Delete(id, password)
+    if db.delete(id, password)
       puts("Entra")
     else
       msg_box('Error', "Error")
@@ -91,7 +98,7 @@ include Glimmer
 
   def actualizar(id, user, password, tipoUsuario)
     db = Implementacion.new
-    if db.Update(id, user, password, tipoUsuario)
+    if db.update(id, user, password, tipoUsuario)
       puts("Entra")
     else
       msg_box('Error', "Error")
