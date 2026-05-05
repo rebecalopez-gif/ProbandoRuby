@@ -9,7 +9,7 @@ class Implementacion
   $Implementacion = Mysql2::Client.new(
     host:     'localhost',
     username: 'root',
-    password: 'pr0gramAr',
+    password: '1dami',
     database: 'polideportivo'
   )
 
