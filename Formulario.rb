@@ -66,9 +66,12 @@ include Glimmer
         button('Update') {
           stretchy false
           on_clicked do
-          if @user.text != ""
-
+          if @id.text != "" && @password.text != "" 
+            msg_box('Info', "El usuario #{@user.text} con id #{@id.text} y contraseña #{@password.text} ha sido actualizado")
+            self.actualizar(@id.text, @user.text, @password.text)
+            @id.text = "";
             @user.text = "";
+            @password.text = "";
           else
             msg_box('Error', "Rellena el nombre")
           end
@@ -96,9 +99,9 @@ include Glimmer
     end
   end
 
-  def actualizar(id, user, password, tipoUsuario)
+  def actualizar(id, user, password)
     db = Implementacion.new
-    if db.update(id, user, password, tipoUsuario)
+    if db.update(id, user, password)
       puts("Entra")
     else
       msg_box('Error', "Error")

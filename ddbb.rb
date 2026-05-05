@@ -4,12 +4,12 @@ class Implementacion
     SQLQUERY  = "SELECT * FROM usuario"
     SQLINSERT = "INSERT INTO usuario VALUES(?,?,?,?)"
     SQLDELETE = "DELETE FROM usuario WHERE id = ? AND password = ?"
-    SQLUPDATE = "UPDATE usuario SET user = ? WHERE user = ?"
+    SQLUPDATE = "UPDATE usuario SET user = ? WHERE id = ? AND password = ?"
 
   $Implementacion = Mysql2::Client.new(
     host:     'localhost',
     username: 'root',
-    password: 'pr0gramAr',
+    password: '1dami',
     database: 'polideportivo'
   )
 
@@ -32,9 +32,9 @@ class Implementacion
     statement.affected_rows > 0
   end
 
-  def update()
+  def update(id,user, password)
     statement = $Implementacion.prepare(SQLUPDATE)
-    statement.execute("Juan","cliente1")
+    statement.execute(user, id, password)
     statement.affected_rows > 0
   end
 end
