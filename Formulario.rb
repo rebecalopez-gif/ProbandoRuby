@@ -1,3 +1,4 @@
+=begin
 require 'glimmer-dsl-libui'
 
 include Glimmer
@@ -51,3 +52,20 @@ def ventana()
 end
 
 ventana()
+
+=end
+
+require_relative 'ddbb'
+
+class Formulario
+  def otro
+    db = Implementacion.new
+    if db.update()
+      puts("Entra")
+    else
+      msg_box('Error', "Error")
+    end
+  end
+end
+
+Formulario.new.otro
