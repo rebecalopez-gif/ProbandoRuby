@@ -6,7 +6,7 @@ class Formulario
 include Glimmer
 
   def ventana()
-    window('Form') {
+    @ventana=window('Form') {
       margined true
       
       vertical_box {
@@ -77,8 +77,19 @@ include Glimmer
           end
         end
         }
+
+        button('Cerrar') {
+          stretchy false
+          on_clicked do
+          @ventana.destroy
+          LibUI.quit
+          
+        end
+        }
+
       }
-    }.show
+    }
+    @ventana.show
   end
 
   def insertar(id, user, password, tipoUsuario)
