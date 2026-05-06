@@ -46,7 +46,7 @@ include Glimmer
               end
             end
             }
-                        button('Resto') {
+              button('Resto') {
               stretchy false
               on_clicked do
               if @num1.text != "" && @num2.text != ""
@@ -76,7 +76,7 @@ include Glimmer
               on_clicked do
               if @num1.text != "" && @num2.text != ""
                 begin
-                  resultado = @num1.text.to_i / @num2.text.to_i
+                  resultado = @num1.text.to_f / @num2.text.to_f
                   msg_box('Resultado suma', "El resultado de #{@num1.text}/#{@num2.text} es: #{resultado}")
                 rescue ZeroDivisionError => e
                   msg_box('Error', "El divisor no puede ser 0")
